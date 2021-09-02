@@ -12,7 +12,12 @@ These are combined together using the Statistically-Combined Ensemble (SCE) algo
 As an example data, we use a 2-dimensional simulation of magnetically-dominated kinetic turbulence.
 The SOM and SCE algorithms are used to dissect the data into accurate ROI boundaries of different geometrical structures present in the flow.
 
-TODO: picture of data; features
+To visualize the sample data in `raw_data_6600.h5`, run
+```python
+   python3 plot_data.py
+```
+
+This will alco create the `data_features_6600.h5` file for the next script.
 
 
 ## Performing individual classification using SOMs
