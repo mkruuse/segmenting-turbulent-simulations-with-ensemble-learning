@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
         conf = Conf()
 
-        fdir = '' # data directory; assume main dir in this sample script
+        fdir = 'sample-raw-data/' # data directory; assume main dir in this sample script
 
         print("plotting {}".format(fdir))
 

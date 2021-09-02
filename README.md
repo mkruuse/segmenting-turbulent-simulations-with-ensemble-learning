@@ -42,7 +42,7 @@ The final measure gives an estimate for the stability and robustness for each de
 
 To perform an SCE combination of the previously ran SOM maps, use
 ```python
-   python3 sce.py --args
+   python3 sce.py
 ```
 
 

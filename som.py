@@ -86,7 +86,7 @@ if __name__ == "__main__":
         xmax = 1.0
         ymax = 1.0
 
-        fdir = '' # data directory; assume main dir in this sample script
+        fdir = 'sample-raw-data/' # data directory; assume main dir in this sample script
         laps = [6600] # all the data laps to process
         lap = laps[0] # data file number
 
