@@ -64,7 +64,7 @@ def imshow(ax,
 
 # read array from clusterID.h5
 def read_clusterID(datadir, run):
-    datafile = datadir + '/' + run + '/clusterID_13000.h5'
+    datafile = datadir + '/' + run + '/data_som_clusters_13000.h5' # NOTE: hardcoded data file name
     f5 = h5.File(datafile,'r')
     clusters = f5['databack'][()]
     f5.close()
@@ -116,55 +116,13 @@ if __name__ == "__main__":
 
     #location of output directories of puhti1/2/3 runs
 
-    runid = 3 # puhti run id: 1/2/3
-    if runid == 3:
-        datadir = '../puhti-runs3-h5'
+    runid = 0 # pre-computed sample runs id: 1/2/3
+    if runid == 0:
+        datadir = 'sample-som-runs'
         runs = [
-            'output_15_0.6_10000',
-            'output_15_0.6_20000',
-            'output_15_0.6_30000',
-            'output_15_0.6_40000',
             'output_15_0.6_50000', ##
-            'output_15_0.7_10000',
-            'output_15_0.7_20000',
-            'output_15_0.7_30000',
-            'output_15_0.7_40000',
             'output_15_0.7_50000', ##
-            'output_15_0.8_10000',
-            'output_15_0.8_20000',
-            'output_15_0.8_30000',
-            'output_15_0.8_40000',
             'output_15_0.8_50000', ##
-            #'output_15_10_0.6_10000',
-            #'output_15_10_0.6_20000',
-            #'output_15_10_0.6_30000',
-            #'output_15_10_0.6_40000',
-            #'output_15_10_0.6_50000',
-            #'output_15_10_0.6_60000',
-            #'output_15_10_0.6_70000',
-            #'output_15_10_0.6_75000', ##
-            #'output_20_0.6_10000',
-            #'output_20_0.6_20000',
-            #'output_20_0.6_30000',
-            #'output_20_0.6_40000', ##
-            #'output_20_0.7_10000',
-            #'output_20_0.7_20000',
-            #'output_20_0.7_30000',
-            #'output_20_0.7_40000',
-            #'output_20_0.7_50000', ##
-            #'output_20_0.8_10000',
-            #'output_20_0.8_20000',
-            #'output_20_0.8_30000',
-            #'output_20_0.8_40000', ##
-            #'output_20_10_0.7_100000',
-            #'output_20_10_0.7_20000',
-            #'output_20_10_0.7_30000',
-            #'output_20_10_0.7_40000',
-            #'output_20_10_0.7_50000',
-            #'output_20_10_0.7_60000',
-            #'output_20_10_0.7_70000',
-            #'output_20_10_0.7_80000',
-            #'output_20_10_0.7_90000', ##
                ]
     else:
         print('run not implemented yet')
@@ -208,7 +166,7 @@ if __name__ == "__main__":
         nids = len(ids) #number of cluster ids in this run
 
         # visualize first image as an example
-        if False:
+        if True:
             imshow(axs[0],
                     clusters[:,:,0],
                     xmin,xmax,ymin,ymax,
@@ -285,7 +243,7 @@ if __name__ == "__main__":
                                     vmax = 1.0,
                                     cmap='binary',
                                     )
-                            fig.savefig('intersect_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
+                            fig.savefig(datadir+'/intersect_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
 
 
                         #--------------------------------------------------
@@ -304,7 +262,7 @@ if __name__ == "__main__":
                                     vmax = 1.0,
                                     cmap='binary',
                                     )
-                            fig.savefig('union_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
+                            fig.savefig(datadir + '/union_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
 
                         #--------------------------------------------------
 
@@ -323,7 +281,7 @@ if __name__ == "__main__":
                                     vmax = S,
                                     cmap='seismic',
                                     )
-                            fig.savefig('signalstrength_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
+                            fig.savefig(datadir + '/signalstrength_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
 
                         #--------------------------------------------------
                         # Union quality of two masked arrays, Q
@@ -346,7 +304,7 @@ if __name__ == "__main__":
                                     vmax = Q,
                                     cmap='YlGn',
                                     )
-                            fig.savefig('quality_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
+                            fig.savefig(datadir+ '/quality_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
 
 
 
@@ -372,7 +330,7 @@ if __name__ == "__main__":
                                     cmap='plasma',
                                     plot_log = True,
                                     )
-                            fig.savefig('SQU_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
+                            fig.savefig(datadir + '/SQU_map1-{}_map2-{}_id1-{}_id2-{}.png'.format(run, runC, cid, cidC))
 
 
                         # append these measures to the mapping dictionary
@@ -411,7 +369,7 @@ if __name__ == "__main__":
                            vmax = np.max(total_mask),  #10, np.max(total_mask), #NOTE: 1e7 is about maximum value we seem to get
                            cmap='Reds',
                            )
-                    fig.savefig('SQ_map1-{}_id1-{}.png'.format(run, cid))
+                    fig.savefig(datadir + '/SQ_map1-{}_id1-{}.png'.format(run, cid))
 
                     #log version
                     imshow(axs[0],
@@ -422,11 +380,9 @@ if __name__ == "__main__":
                            cmap='Blues',
                            plot_log = True,
                            )
-                    fig.savefig('SQ_map1-{}_id1-{}_log.png'.format(run, cid))
+                    fig.savefig(datadir + '/SQ_map1-{}_id1-{}_log.png'.format(run, cid))
 
                     print('\n')
-
-
 
 
 
