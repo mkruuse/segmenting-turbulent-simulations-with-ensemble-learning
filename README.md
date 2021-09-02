@@ -25,12 +25,14 @@ This will alco create the `data_features_6600.h5` file for the next script.
 SOM use 2-layer neural network achitecture to produce two-dimensional, compressed map of the original N-dimensional input space.
 The distance matrix of the neurons in the map can be used to extract clusters from the original input data.
 
-To perform a single SOM classification of the example data, run
+To perform a quick test SOM classification on the example data, run
 ```python
-   python3 som.py --args
+   python3 som.py --xdim 10 --ydim 10 --alpha 0.5 --train 10
 ```
 
-The SOM algorithm uses `popsom` [package](https://github.com/njali2001/popsom) discussed [here](https://digitalcommons.uri.edu/theses/1244/).
+Note that a realistic SOM run requires orders of magnitude more training steps that can be set via `--train 10000`.
+
+The SOM algorithm uses `popsom` [package](https://github.com/njali2001/popsom) as discussed [here](https://digitalcommons.uri.edu/theses/1244/).
 
 ## Combining independent evaluations with SCE
 
